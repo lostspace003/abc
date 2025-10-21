@@ -1,0 +1,13 @@
+name: Environment Variables Example
+
+on: [push]
+
+jobs:
+  example:
+    runs-on: ubuntu-latest
+    env:
+      APP_MODE: ${{ vars.APP_MODE }}
+
+    steps:
+      - name: Display Environment Variable
+        run: echo "this is $APP_MODE mode"
