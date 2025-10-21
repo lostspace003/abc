@@ -6,7 +6,8 @@
   "scripts": {
     "build": "node scripts/build.js",
     "test": "node tests/test.js",
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "deploy": "vercel --prod"
   },
   "author": "",
   "license": "MIT",
