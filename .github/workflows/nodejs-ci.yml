@@ -1,27 +1,81 @@
-name: node.js CI
-on: [push]
+# ------------------------------------------------------------
+# Name of the workflow (appears in the Actions tab)
+# ------------------------------------------------------------
+name: Node.js CI with GitHub Pages
 
-jobs: #<— start the jobs encapsulation
-  build: #<—start the build job encapsulation
+# ------------------------------------------------------------
+# Run this workflow when code is pushed to the main branch
+# (You can add pull_request if you want to test PRs too)
+# ------------------------------------------------------------
+on:
+  push:
+    branches:
+      - main
+
+# ------------------------------------------------------------
+# Give permissions to deploy to GitHub Pages
+# ------------------------------------------------------------
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# ------------------------------------------------------------
+# Define jobs for this workflow
+# ------------------------------------------------------------
+jobs:
+  # ----------------------------------------------------------
+  # 1️⃣ Build Job - install, build, and test your Node.js app
+  # ----------------------------------------------------------
+  build:
     runs-on: ubuntu-latest
-    steps: # <— start of steps encapsulation within 'build' job
+
+    steps:
+      # Step 1: Checkout your code
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Setup node.js
+
+      # Step 2: Setup Node.js (v14 to match package.json)
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 14
-      - name: Run install
-        run: npm install
+
+      # Step 3: Install dependencies (clean install)
       - name: Install dependencies
         run: npm ci
-      - name: build
+
+      # Step 4: Build your project
+      - name: Build the project
         run: npm run build
-      - name: Install Vercel CLI
-        run: npm install -g vercel
-      - name: Deploy the application
-        run: npm run deploy
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    #<— end of steps encapsulation within 'build' job
-  #<—end of 'build' job encapsulation
-#end of job encapsulation
+
+      # Step 5: Run tests
+      - name: Run tests
+        run: npm test
+
+      # Step 6: Upload build output for deployment
+      # Change 'dist' below if your build output folder is different
+      - name: Upload production-ready files
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+  # ----------------------------------------------------------
+  # 2️⃣ Deploy Job - publishes the build to GitHub Pages
+  # ----------------------------------------------------------
+  deploy:
+    # Waits until the build job is done
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      # Optional: Add a success message
+      - name: Deployment Success
+        run: echo "🚀 Deployed successfully to GitHub Pages!"
