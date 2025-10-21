@@ -1,5 +1,5 @@
 {
-  "name": "nodejs-ci-starter",
+  "name": "@lostspcae003/abc",
   "version": "1.0.0",
   "description": "Minimal Node.js project with CI/CD using GitHub Actions and GitHub Pages.",
   "main": "src/index.js",
