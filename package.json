@@ -1,0 +1,16 @@
+{
+  "name": "nodejs-ci-starter",
+  "version": "1.0.0",
+  "description": "Minimal Node.js project designed to pass the provided GitHub Actions CI workflow (build + test) on Node 14.",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "test": "node tests/test.js",
+    "start": "node src/index.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": "14.x"
+  }
+}
