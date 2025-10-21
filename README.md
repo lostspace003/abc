@@ -1,3 +1,5 @@
+[![Deploy static content to Pages](https://github.com/lostspace003/abc/actions/workflows/static.yml/badge.svg)](https://github.com/lostspace003/abc/actions/workflows/static.yml)
+
 # nodejs-ci-starter
 
 A tiny Node.js repo tailored for the provided GitHub Actions workflow. It has:
