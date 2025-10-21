@@ -48,10 +48,10 @@ jobs:
         with:
           node-version: '20'
           registry-url: 'https://npm.pkg.github.com/'
-          scope: '@solankiarpan'
+          scope: '@lostspace003'
 
       - name: Configure npm registry
-        run: echo "registry=https://npm.pkg.github.com/@solankiarpan" >> .npmrc
+        run: echo "registry=https://npm.pkg.github.com/@lostspace003" >> .npmrc
 
       - name: Publish to GitHub Packages
         run: npm publish $(ls *.tgz)
