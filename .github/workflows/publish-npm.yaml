@@ -1,4 +1,4 @@
-name: Publish to Github Packages
+name: Publish to GitHub Packages
 
 on:
   push:
@@ -48,10 +48,9 @@ jobs:
         with:
           node-version: '20'
           registry-url: 'https://npm.pkg.github.com/'
-          scope: '@lostspace003'
 
       - name: Configure npm registry
-        run: echo "registry=https://npm.pkg.github.com/@lostspace003" >> .npmrc
+        run: echo "registry=https://npm.pkg.github.com/@${GITHUB_ACTOR}" >> .npmrc
 
       - name: Publish to GitHub Packages
         run: npm publish $(ls *.tgz)
