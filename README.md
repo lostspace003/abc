@@ -158,7 +158,10 @@ abc/
 │       ├── publish-npm.yaml # NPM package publishing
 │       ├── ghcr-publish.yaml # Docker image publishing
 │       ├── static.yml      # Static content deployment
-│       └── ...             # Additional workflow files
+│       ├── env_var.yaml    # Environment variable examples
+│       ├── main.yaml       # Additional CI workflow
+│       ├── passing-data.yaml # Workflow data passing examples
+│       └── release.yaml    # Release automation
 ├── src/
 │   ├── index.js           # Main application entry point
 │   └── sum.js             # Example module with sum function
@@ -171,6 +174,7 @@ abc/
 ├── package.json           # Project metadata and dependencies
 ├── package-lock.json      # Locked dependency versions
 ├── .nvmrc                 # Node.js version specification
+├── LICENSE                # MIT License
 └── README.md             # This file
 ```
 
