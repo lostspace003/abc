@@ -241,14 +241,14 @@ docker run -p 3000:3000 abc-app
 
 ### Pulling from GitHub Container Registry
 
-> **Note:** The workflow currently publishes the image as `hello`. You can pull it with:
+> **Note:** The workflow currently publishes the image as `hello` (not `abc`). This is configured in `.github/workflows/ghcr-publish.yaml`. You can pull the current image with:
 
 ```bash
 docker pull ghcr.io/lostspace003/hello:latest
 docker run -p 3000:3000 ghcr.io/lostspace003/hello:latest
 ```
 
-To customize the image name to match your project, edit `.github/workflows/ghcr-publish.yaml` and change `hello` to your preferred name.
+**Recommendation:** For consistency with your project name, edit `.github/workflows/ghcr-publish.yaml` and change the image name from `hello` to `abc` or your preferred name.
 
 ### Dockerfile Overview
 
@@ -257,6 +257,8 @@ The Dockerfile uses Node.js 20 Alpine image for a lightweight container:
 - 🏗️ Builds the application
 - 🚀 Exposes port 3000
 - ▶️ Runs the application with `npm start`
+
+> **Note:** The Dockerfile uses Node.js 20, which is newer than the Node.js 14.x specified in `package.json`. For consistency with the CI workflows and package.json, you may want to update the Dockerfile to use `FROM node:14-alpine` instead.
 
 ---
 
