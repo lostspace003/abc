@@ -237,10 +237,14 @@ docker run -p 3000:3000 abc-app
 
 ### Pulling from GitHub Container Registry
 
+> **Note:** The workflow currently publishes the image as `hello`. You can pull it with:
+
 ```bash
 docker pull ghcr.io/lostspace003/hello:latest
 docker run -p 3000:3000 ghcr.io/lostspace003/hello:latest
 ```
+
+To customize the image name to match your project, edit `.github/workflows/ghcr-publish.yaml` and change `hello` to your preferred name.
 
 ### Dockerfile Overview
 
